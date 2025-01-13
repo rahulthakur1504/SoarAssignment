@@ -210,8 +210,7 @@ public class AddProductAndCheckOut extends BaseTest {
                 if (isElementPresent(quantityLimitPopup)) {
                     logger.info("Popup displayed: 'Only 1 product can be added'. Skipping to the next product.");
 
-                    // Skip to the next product by incrementing attemptCount and continue
-                    attemptCount++;
+                    // Do not increment attemptCount here, just move to the next product
                     continue;  // Skip to the next product
                 }
 
@@ -225,8 +224,7 @@ public class AddProductAndCheckOut extends BaseTest {
 
             } catch (Exception e) {
                 logger.error("Error increasing quantity for product: {}", e.getMessage());
-                // Skip to the next product if any error occurs
-                attemptCount++;
+                // If an error occurs, skip to the next product without modifying quantity
                 continue;  // Continue to the next product in case of error
             }
 
@@ -252,6 +250,9 @@ public class AddProductAndCheckOut extends BaseTest {
                 // Get the final price after cart modification
                 getAllProductPrice(priceAfterIncrease);
             }
+
+            // Increment attempt count only after trying to modify a product
+            attemptCount++;
         }
 
         // If after several attempts no quantity was increased, log an error
@@ -260,6 +261,7 @@ public class AddProductAndCheckOut extends BaseTest {
             throw new AssertionError("Failed to increase quantity for any product in the basket.");
         }
     }
+
 
     public static void chekoutProduct() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));

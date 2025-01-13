@@ -137,7 +137,7 @@ public class UserRegistration extends BaseTest {
 
     // Method to select a random security question
     private void selectRandomSecurityQuestion() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         logger.info("Clicking on the security question combo box to display options...");
         driver.findElement(securityQuestionComoBox).click();

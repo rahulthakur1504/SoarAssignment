@@ -1,3 +1,4 @@
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,7 +17,9 @@ public class BaseTest {
     public void setup() {
         logger.info("Initializing WebDriver...");
 
-        System.setProperty("chromedriver-mac-arm64", "SoarAssignment/untitled1/chromedriver-mac-arm64"); // Provide your chromedriver path
+        String driverPath = "/Users/thakur.r/SoarAssignment/untitled1/src/main/resources/ChromeDriver/chromedriver";
+        System.setProperty("webdriver.chrome.driver", driverPath);
+
         ChromeOptions options = new ChromeOptions();
         // options.addArguments("--headless");  // Optional: Run in headless mode
         driver = new ChromeDriver(options);
